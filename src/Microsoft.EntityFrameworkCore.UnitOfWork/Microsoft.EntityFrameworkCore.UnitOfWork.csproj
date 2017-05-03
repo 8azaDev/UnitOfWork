@@ -1,19 +1,20 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Description>A plugin for Microsoft.EntityFrameworkCore to support repository, unit of work patterns, and multiple database with distributed transaction supported.</Description>
-    <VersionPrefix>1.1.2</VersionPrefix>
-    <Authors>rigofunc;rigofunc@outlook.com;</Authors>
-    <TargetFrameworks>netstandard1.6.1</TargetFrameworks>
-    <NoWarn>$(NoWarn);CS1591</NoWarn>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <AssemblyName>Microsoft.EntityFrameworkCore.UnitOfWork</AssemblyName>
+    <Authors>rigofunc;rigofunc@outlook.com;</Authors>
+    <Description>A plugin for Microsoft.EntityFrameworkCore to support repository, unit of work patterns, and multiple database with distributed transaction supported.</Description>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
     <PackageId>Microsoft.EntityFrameworkCore.UnitOfWork</PackageId>
-    <PackageTags>Entity Framework Core;entity-framework-core;EF;Data;O/RM;unitofwork;Unit Of Work;unit-of-work</PackageTags>
-    <PackageProjectUrl>https://github.com/arch/UnitOfWork</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/arch/UnitOfWork/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/arch/UnitOfWork</PackageProjectUrl>
+    <PackageTags>Entity Framework Core;entity-framework-core;EF;Data;O/RM;unitofwork;Unit Of Work;unit-of-work</PackageTags>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/arch/UnitOfWork.git</RepositoryUrl>
+    <TargetFrameworks>netstandard1.6.1</TargetFrameworks>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <VersionPrefix>1.1.2.1</VersionPrefix>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.AutoHistory" Version="1.1.1" />

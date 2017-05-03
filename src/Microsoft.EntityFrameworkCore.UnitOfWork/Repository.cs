@@ -21,6 +21,17 @@ namespace Microsoft.EntityFrameworkCore
         private readonly DbSet<TEntity> _dbSet;
 
         /// <summary>
+        /// An accessor to DbSet
+        /// </summary>
+        /// <returns>An DbSet</returns>
+        public DbSet<TEntity> Table {
+            get
+            {
+                return _dbSet;
+            }
+        }
+
+        /// <summary>
         /// Initializes a new instance of the <see cref="Repository{TEntity}"/> class.
         /// </summary>
         /// <param name="dbContext">The database context.</param>
@@ -52,7 +63,6 @@ namespace Microsoft.EntityFrameworkCore
         /// <param name="disableTracking"><c>True</c> to disable changing tracking; otherwise, <c>false</c>. Default to <c>true</c>.</param>
         /// <returns>An <see cref="IQueryable{TEntity}"/> that contains elements that satisfy the condition specified by predicate.</returns>
         /// <remarks>This method default no-tracking query.</remarks>
-        [Obsolete("This method will be removed in v2.0.0, please use 'GetPagedList' method.")]
         public IQueryable<TEntity> Query(Expression<Func<TEntity, bool>> predicate, bool disableTracking = true)
         {
             if (disableTracking)
@@ -62,6 +72,120 @@ namespace Microsoft.EntityFrameworkCore
             else
             {
                 return _dbSet.Where(predicate);
+            }
+        }
+
+        /// <summary>
+        /// Filters a sequence of values based on a predicate. This method default no-tracking query.
+        /// </summary>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <param name="disableTracking"><c>True</c> to disable changing tracking; otherwise, <c>false</c>. Default to <c>true</c>.</param>
+        /// <returns>An <see cref="IQueryable{TEntity}"/> that contains elements that satisfy the condition specified by <paramref name="predicate"/>.</returns>
+        /// <remarks>This method default no-tracking query.</remarks>
+        public List<TEntity> GetAllList(Expression<Func<TEntity, bool>> predicate = null, bool disableTracking = true)
+        {
+            if (disableTracking)
+            {
+                return _dbSet.AsNoTracking().Where(predicate).ToList();
+            }
+            else
+            {
+                return _dbSet.Where(predicate).ToList();
+            }
+        }
+
+        /// <summary>
+        /// Filters a sequence of values based on a predicate. This method default no-tracking query.
+        /// </summary>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <param name="disableTracking"><c>True</c> to disable changing tracking; otherwise, <c>false</c>. Default to <c>true</c>.</param>
+        /// <returns>An <see cref="IQueryable{TEntity}"/> that contains elements that satisfy the condition specified by <paramref name="predicate"/>.</returns>
+        /// <remarks>This method default no-tracking query.</remarks>
+        public Task<List<TEntity>> GetAllListAsync(Expression<Func<TEntity, bool>> predicate = null, bool disableTracking = true)
+        {
+            if (disableTracking)
+            {
+                return _dbSet.AsNoTracking().Where(predicate).ToListAsync();
+            }
+            else
+            {
+                return _dbSet.Where(predicate).ToListAsync();
+            }
+        }
+        
+        /// <summary>
+        /// Filters a value based on a predicate. This method default no-tracking query.
+        /// </summary>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <param name="disableTracking"><c>True</c> to disable changing tracking; otherwise, <c>false</c>. Default to <c>true</c>.</param>
+        /// <returns>An <see cref="IQueryable{TEntity}"/> that contains elements that satisfy the condition specified by <paramref name="predicate"/>.</returns>
+        /// <remarks>This method default no-tracking query.</remarks>
+        public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate, bool disableTracking = true)
+        {
+            if (disableTracking)
+            {
+                return _dbSet.AsNoTracking().Where(predicate).SingleOrDefault();
+            }
+            else
+            {
+                return _dbSet.Where(predicate).SingleOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Filters a value based on a predicate. This method default no-tracking query.
+        /// </summary>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <param name="disableTracking"><c>True</c> to disable changing tracking; otherwise, <c>false</c>. Default to <c>true</c>.</param>
+        /// <returns>An <see cref="IQueryable{TEntity}"/> that contains elements that satisfy the condition specified by <paramref name="predicate"/>.</returns>
+        /// <remarks>This method default no-tracking query.</remarks>
+        public Task<TEntity> SingleOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, bool disableTracking = true)
+        {
+            if (disableTracking)
+            {
+                return _dbSet.AsNoTracking().Where(predicate).SingleOrDefaultAsync();
+            }
+            else
+            {
+                return _dbSet.Where(predicate).SingleOrDefaultAsync();
+            }
+        }
+
+        /// <summary>
+        /// Filters a value based on a predicate. This method default no-tracking query.
+        /// </summary>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <param name="disableTracking"><c>True</c> to disable changing tracking; otherwise, <c>false</c>. Default to <c>true</c>.</param>
+        /// <returns>An <see cref="IQueryable{TEntity}"/> that contains elements that satisfy the condition specified by <paramref name="predicate"/>.</returns>
+        /// <remarks>This method default no-tracking query.</remarks>
+        public TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate, bool disableTracking = true)
+        {
+            if (disableTracking)
+            {
+                return _dbSet.AsNoTracking().Where(predicate).FirstOrDefault();
+            }
+            else
+            {
+                return _dbSet.Where(predicate).FirstOrDefault();
+            }
+        }
+
+        /// <summary>
+        /// Filters a value based on a predicate. This method default no-tracking query.
+        /// </summary>
+        /// <param name="predicate">A function to test each element for a condition.</param>
+        /// <param name="disableTracking"><c>True</c> to disable changing tracking; otherwise, <c>false</c>. Default to <c>true</c>.</param>
+        /// <returns>An <see cref="IQueryable{TEntity}"/> that contains elements that satisfy the condition specified by <paramref name="predicate"/>.</returns>
+        /// <remarks>This method default no-tracking query.</remarks>
+        public Task<TEntity> FirstOrDefaultAsync(Expression<Func<TEntity, bool>> predicate, bool disableTracking = true)        
+        {
+            if (disableTracking)
+            {
+                return _dbSet.AsNoTracking().Where(predicate).FirstOrDefaultAsync();
+            }
+            else
+            {
+                return _dbSet.Where(predicate).FirstOrDefaultAsync();
             }
         }
 

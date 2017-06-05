@@ -109,6 +109,24 @@ namespace Microsoft.EntityFrameworkCore
             return (IRepository<TEntity>)repositories[type];
         }
 
+        public IRepository<TEntity> GetRepository<TRepository, TEntity>() 
+            where TEntity : class
+            where TRepository : IRepository<TEntity>
+        {
+            if (repositories == null)
+            {
+                repositories = new Dictionary<Type, object>();
+            }
+
+            var type = typeof(TEntity);
+            if (!repositories.ContainsKey(type))
+            {
+                repositories[type] = (TRepository)Activator.CreateInstance(typeof(TRepository), _context);
+            }
+
+            return (IRepository<TEntity>)repositories[type];
+        }
+
         /// <summary>
         /// Executes the specified raw SQL command.
         /// </summary>
